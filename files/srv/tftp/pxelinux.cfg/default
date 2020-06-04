@@ -1,0 +1,26 @@
+default menu.c32
+prompt 0
+timeout 30
+
+menu title PXE Menu
+
+label local
+  menu label ^Boot from local hard drive
+  menu default
+  localboot 0
+
+label CentOS 7 Generic
+  kernel /netboot/centos7/vmlinuz
+  append initrd=/netboot/centos7/initrd.img inst.repo=nfs://{{ kickstart_host }}:{{ nfs_root }}/centos7 ks=nfs://{{ kickstart_host }}:{{ nfs_root }}/kickstart/centos7.ks syslog={{ syslog_host }}
+
+label Ubuntu 18.04 Generic
+  kernel /netboot/ubuntu18/linux
+  append initrd=/netboot/ubuntu18/initrd.gz inst.repo=nfs://{{ kickstart_host }}:{{ nfs_root }}/ubuntu18 ks=http://{{ kickstart_host }}/kickstart/ubuntu18.ks locale=en_US syslog={{ syslog_host }}
+
+label Ubuntu 18.04 Openstack AIO
+  kernel /netboot/ubuntu18/linux
+  append initrd=/netboot/ubuntu18/initrd.gz inst.repo=nfs://{{ kickstart_host }}:{{ nfs_root }}/ubuntu18 ks=http://{{ kickstart_host }}/kickstart/openstack-aio.ks locale=en_US hostname=openstack
+
+label ESXI 6.7
+  kernel /netboot/esxi67/mboot.c32
+  append -c netboot/kickstart/esxi.boot.cfg ks=http://{{ kickstart_host }}/kickstart/esxi.ks

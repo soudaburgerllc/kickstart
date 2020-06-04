@@ -1,0 +1,14 @@
+- name: Fetch OS ISOs
+  get_url:
+    url: "{{ isos[item]['url'] }}"
+    dest: "/root/{{ item }}.iso"
+    checksum: "{{ isos[item]['checksum'] }}"
+  loop: "{{ supported_os_versions }}"
+- name: Mount OS ISOs
+  mount:
+    path: "{{ nfs_root }}/{{ item }}"
+    src: "/root/{{ item }}.iso"
+    fstype: iso9660
+    opts: ro,noauto
+    state: mounted
+  loop: "{{ supported_os_versions }}"

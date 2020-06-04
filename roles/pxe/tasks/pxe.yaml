@@ -1,0 +1,48 @@
+- name: create root netboot placeholder
+  file:
+    path: "/root/netboot"
+    state: directory
+- name: create tftp_root netboot directory
+  file:
+    path: "{{ tftp_root }}/netboot"
+    state: directory
+- name: create tftp_root pxelinux.cfg directory
+  file:
+    path: "{{ tftp_root }}/pxelinux.cfg"
+    state: directory
+- name: copy pxelinux.0 from syslinux
+  copy:
+    src: /usr/share/syslinux/pxelinux.0
+    dest: "{{ tftp_root }}/pxelinux.0"
+    remote_src: yes
+- name: copy c32 menu files from syslinux
+  copy:
+    src: "/usr/share/syslinux/{{ item }}"
+    dest: "{{ tftp_root }}"
+    remote_src: yes
+  loop:
+    - menu.c32
+    - mboot.c32
+    - chain.c32
+- name: create network boot OS directories
+  file:
+    path: "{{ tftp_root }}/netboot/{{ item }}"
+    state: directory
+  loop: "{{ supported_os_versions }}"
+- name: copy grub config boot menu
+  template:
+    src: "../../../files/srv/tftp/grub.cfg"
+    dest: "{{ tftp_root }}/grub.cfg"
+- name: copy pxelinux.cfg/default boot menu
+  template:
+    src: "../../../files/srv/tftp/pxelinux.cfg/default"
+    dest: "{{ tftp_root }}/pxelinux.cfg/default"
+- name: add pxe firewall rules
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop:
+    - "67/udp"
+    - "69/udp"
+    - "69/tcp"

@@ -1,0 +1,4 @@
+- name: copy /etc/issue
+  template:
+    src: "../../../files/etc/issue"
+    dest: "{{ http_root }}/kickstart/issue"

@@ -1,0 +1,24 @@
+- name: include tftp tasks
+  include_tasks: tftp.yaml
+- name: include nfs tasks
+  include_tasks: nfs.yaml
+- name: include syslinux tasks
+  include_tasks: syslinux.yaml
+- name: include pxe tasks
+  include_tasks: pxe.yaml
+- name: include iso tasks
+  include_tasks: isos.yaml
+- name: include centos7 tasks
+  include_tasks: centos7.yaml
+- name: include ubuntu18 tasks
+  include_tasks: ubuntu18.yaml
+- name: include nginx tasks
+  include_tasks: nginx.yaml
+- name: include kickstart tasks
+  include_tasks: kickstart.yaml
+- name: include authorized_keys tasks
+  include_tasks: authorized_keys.yaml
+- name: include bootstrap tasks
+  include_tasks: bootstrap.yaml
+- name: include issue tasks
+  include_tasks: issue.yaml

@@ -1,0 +1,4 @@
+- name: yum install syslinux
+  yum:
+    name: syslinux
+    state: present

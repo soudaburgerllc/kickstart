@@ -1,0 +1,34 @@
+- name: Purge obsolete nginx files
+  file:
+    path: "/etc/nginx/{{ item }}"
+    state: absent
+  with_items:
+    - fastcgi.conf
+    - fastcgi_params
+    - koi-utf
+    - koi-win
+    - proxy_params
+    - scgi_params
+    - uwsgi_params
+    - win-utf
+    - modules-available
+    - modules-enabled
+    - sites-available
+    - sites-enabled
+    - snippets
+  register: nginx_remove_files
+  notify: restart nginx
+- name: copy /etc/nginx/conf.d/dhparam
+  template:
+    src: "../../../files/etc/nginx/conf.d/dhparam"
+    dest: "/etc/nginx/conf.d/dhparam"
+  notify: restart nginx
+- name: Copy Nginx Configurations
+  template:
+    src: "../../../files/{{ item }}"
+    dest: "{{ item }}"
+    mode: "0644"
+  with_items:
+    - /etc/nginx/nginx.conf
+    - /etc/nginx/mime.types
+  notify: restart nginx

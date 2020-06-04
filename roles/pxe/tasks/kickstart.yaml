@@ -1,0 +1,18 @@
+- name: create kickstart directory
+  file:
+    path: "{{ nfs_root }}/kickstart"
+    state: directory
+- name: copy os-specific nfs kickstart files
+  template:
+    src: "../../../files/nfs/kickstart/{{ item }}.ks"
+    dest: "{{ nfs_root }}/kickstart/{{ item }}.ks"
+  loop: "{{ supported_os_versions }}"
+- name: Create http_root kickstart directory
+  file:
+    path: "{{ http_root }}/kickstart"
+    state: directory
+- name: copy os-specific http kickstart files
+  template:
+    src: "../../../files/nfs/kickstart/{{ item }}.ks"
+    dest: "{{ http_root }}/kickstart/{{ item }}.ks"
+  loop: "{{ supported_os_versions }}"

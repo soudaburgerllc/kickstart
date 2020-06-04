@@ -1,0 +1,29 @@
+- name: yum install nfs-utils
+  yum:
+    name: nfs-utils
+    state: present
+- name: ensure nfs server is enabled
+  systemd:
+    name: nfs-server
+    state: started
+    enabled: yes
+- name: create nfs_root directory
+  file:
+    path: "{{ nfs_root }}"
+    state: directory
+    owner: nfsnobody
+    group: nfsnobody
+- name: add nfs firewall rules
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop:
+    - nfs
+    - mountd
+    - rpc-bind
+- name: copy /etc/exports
+  template:
+    src: "../../../files/etc/exports"
+    dest: "/etc/exports"
+  notify: restart exportfs

@@ -1,0 +1,4 @@
+{{ nfs_root }}/kickstart *(ro)
+{% for os in supported_os_versions %}
+{{ nfs_root }}/{{ os }} *(ro)
+{% endfor %}

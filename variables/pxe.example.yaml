@@ -1,0 +1,22 @@
+allowed_subnets:
+  - "0.0.0.0/0"
+http_root: "/var/www/html"
+# openssl passwd -1 "password"
+initial_system_password: "$1$AKC/xDRy$5kKw2ikDw51bpMSdntx9w/"
+initial_system_user: "ansible"
+isos:
+  centos7:
+    checksum: "sha256:659691c28a0e672558b003d223f83938f254b39875ee7559d1a4a14c79173193"
+    url: "http://ftp.usf.edu/pub/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso"
+  ubuntu18:
+    checksum: "sha256:73b8d860e421000a6e35fdefbb0ec859b9385b0974cf8089f5d70a87de72f6b9"
+    url: "https://releases.ubuntu.com/18.04.4/ubuntu-18.04.4-live-server-amd64.iso"
+kickstart_host: "pxeserver.example.com"
+nfs_root: "/nfs"
+openstack_aio_interface_name: "ens32"
+supported_os_versions:
+  - centos7
+  - ubuntu18
+tftp_root: "/srv/tftp"
+ubuntu_netboot_checksum: "sha256:5fe1e599ed7266abb39364b21c07870866b37f655d603c3b2191394a3e85ff39"
+ubuntu_netboot_url: "http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/netboot.tar.gz"

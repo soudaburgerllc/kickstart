@@ -1,0 +1,24 @@
+allowed_subnets:
+  - "192.168.1.0/24"
+ansible_remote_user: "ansible"
+common_installed_packages:
+  - apt-transport-https
+  - git
+  - gnupg
+  - net-tools
+  - python3-pip
+  - screen
+  - software-properties-common
+  - unzip
+  - vim
+domain_name: "example.com"
+nginx_stream_enabled: "no"
+nginx_user:
+  CentOS: "nginx"
+  Ubuntu: "www-data"
+syslog_host: "localhost"
+syslog_port: "514"
+timezone: "America/New_York"
+
+ubuntu_disk_partitioning: |
+  logvol /       --fstype=ext4 --name=root           --vgname=vg0 --size=8192 --grow

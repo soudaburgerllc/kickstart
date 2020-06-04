@@ -1,0 +1,6 @@
+- name: Import install tasks
+  import_tasks: install.yaml
+- name: Import config tasks
+  import_tasks: config.yaml
+- name: Import firewall tasks
+  import_tasks: firewall.yaml

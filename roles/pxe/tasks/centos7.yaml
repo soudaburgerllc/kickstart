@@ -1,0 +1,8 @@
+- name: copy centos7 pxeboot files
+  copy:
+    src: "{{ nfs_root }}/centos7/images/pxeboot/{{ item }}"
+    dest: "{{ tftp_root }}/netboot/centos7/"
+    remote_src: yes
+  loop:
+    - "initrd.img"
+    - "vmlinuz"

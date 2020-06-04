@@ -1,0 +1,7 @@
+- name: copy bootstraps
+  template:
+    src: "../../../files/srv/scripts/{{ item }}.sh"
+    dest: "{{ http_root }}/kickstart/{{ item }}.sh"
+  loop:
+    - "centos_bootstrap"
+    - "ubuntu_bootstrap"

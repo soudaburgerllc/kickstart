@@ -1,0 +1,12 @@
+- hosts: all
+- hosts: pxe
+  any_errors_fatal: true
+  become: yes
+  gather_facts: yes
+  remote_user: "{{ ansible_remote_user }}"
+  roles:
+    - role: "../roles/nginx"
+    - role: "../roles/pxe"
+  vars_files:
+    - "../variables/common.yaml"
+    - "../variables/pxe.yaml"

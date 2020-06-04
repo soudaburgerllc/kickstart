@@ -1,0 +1,11 @@
+- name: Create PXE Nginx config
+  template:
+    src: "../../../files/etc/nginx/conf.d/pxe.conf"
+    dest: "/etc/nginx/conf.d/pxe.conf"
+    owner: "{{ nginx_user[ansible_distribution] }}"
+    group: "{{ nginx_user[ansible_distribution] }}"
+  notify: restart nginx
+- name: Create http_root directory
+  file:
+    path: "{{ http_root }}"
+    state: directory

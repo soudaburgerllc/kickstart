@@ -1,0 +1,30 @@
+- name: Allow http through ufw
+  ufw:
+    rule: allow
+    port: "80"
+    proto: tcp
+    src: "{{ item }}"
+  loop: "{{ allowed_subnets }}"
+  when: ansible_distribution == "Ubuntu"
+- name: Allow https through ufw
+  ufw:
+    rule: allow
+    port: "443"
+    proto: tcp
+    src: "{{ item }}"
+  loop: "{{ allowed_subnets }}"
+  when: ansible_distribution == "Ubuntu"
+- name: Allow http through firewalld
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+  when: ansible_distribution == "CentOS"
+  notify: reload firewalld
+- name: Allow https through firewalld
+  firewalld:
+    service: https
+    permanent: yes
+    state: enabled
+  when: ansible_distribution == "CentOS"
+  notify: reload firewalld

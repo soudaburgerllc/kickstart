@@ -1,0 +1,23 @@
+- name: yum install tftp-server
+  yum:
+    name: tftp-server
+    state: present
+- name: ensure tftp service is enabled
+  systemd:
+    name: tftp
+    state: started
+    enabled: yes
+# - name: copy /etc/xinetd.d/tftp
+#   template:
+#     src: "../../../files/etc/xinetd.d/tftp"
+#     dest: "/etc/xinetd.d/tftp"
+#   notify: restart tftp
+- name: copy /usr/lib/systemd/system/tftp.service init file
+  template:
+    src: "../../../files/usr/lib/systemd/system/tftp.service"
+    dest: "/usr/lib/systemd/system/tftp.service"
+  notify: restart tftp
+- name: create tftp_root directory
+  file:
+    path: "{{ tftp_root }}"
+    state: directory

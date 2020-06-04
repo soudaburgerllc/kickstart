@@ -1,0 +1,10 @@
+- name: create keys directory
+  file:
+    path: "{{ http_root }}/keys"
+    state: directory
+- name: copy authorized_keys to http_root/keys
+  template:
+    src: "../../../files/keys/authorized_keys"
+    dest: "{{ http_root }}/keys/authorized_keys"
+    owner: "{{ nginx_user[ansible_distribution] }}"
+    group: "{{ nginx_user[ansible_distribution] }}"

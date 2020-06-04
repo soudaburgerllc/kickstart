@@ -1,0 +1,9 @@
+- name: yum install epel-release
+  package:
+    name: epel-release
+    state: present
+  when: ansible_distribution == "CentOS"
+- name: install nginx
+  package:
+    name: nginx
+    state: present
