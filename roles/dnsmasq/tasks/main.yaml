@@ -2,3 +2,5 @@
   import_tasks: install.yaml
 - name: import config tasks
   import_tasks: config.yaml
+- name: import service tasks
+  import_tasks: service.yaml

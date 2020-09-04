@@ -3,3 +3,4 @@
     src: "../../../files/etc/dnsmasq.conf"
     dest: "/etc/dnsmasq.conf"
     mode: "0644"
+  notify: restart dnsmasq

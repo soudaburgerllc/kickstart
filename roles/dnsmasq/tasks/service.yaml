@@ -1,0 +1,7 @@
+- name: flush handlers
+  meta: flush_handlers
+- name: start dnsmasq service
+  systemd:
+    name: dnsmasq
+    state: started
+    enabled: yes
