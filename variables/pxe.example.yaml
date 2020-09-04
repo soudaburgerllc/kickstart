@@ -3,6 +3,7 @@ allowed_subnets:
 dnsmasq_dhcp_authoritative: false
 dnsmasq_dhcp_enabled: false
 dnsmasq_dhcp_lease_duration: 12h
+dnsmasq_dhcp_leasefile: "/var/lib/dnsmasq/dnsmasq.leases"
 dnsmasq_dhcp_options: []
 dnsmasq_dhcp_range_begin: "192.168.1.2"
 dnsmasq_dhcp_range_end: "192.168.1.254"
