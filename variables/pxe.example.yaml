@@ -1,5 +1,6 @@
 allowed_subnets:
   - "0.0.0.0/0"
+dnsmasq_domain: "example.com"
 dnsmasq_listen_addresses:
   - "::1"
   - "127.0.0.1"
