@@ -1,0 +1,5 @@
+- name: copy /etc/dnsmasq.conf
+  template:
+    src: "../../../files/etc/dnsmasq.conf"
+    dest: "/etc/dnsmasq.conf"
+    mode: "0644"

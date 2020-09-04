@@ -1,5 +1,10 @@
 allowed_subnets:
   - "0.0.0.0/0"
+dnsmasq_listen_addresses:
+  - "::1"
+  - "127.0.0.1"
+dnsmasq_listen_interfaces:
+  - "eth0"
 http_root: "/var/www/html"
 # openssl passwd -1 "password"
 initial_system_password: "$1$AKC/xDRy$5kKw2ikDw51bpMSdntx9w/"
