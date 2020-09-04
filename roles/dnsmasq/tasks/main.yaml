@@ -1,2 +1,4 @@
 - name: import install tasks
   import_tasks: install.yaml
+- name: import config tasks
+  import_tasks: config.yaml
