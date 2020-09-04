@@ -7,6 +7,7 @@
   roles:
     - role: "../roles/nginx"
     - role: "../roles/pxe"
+    - role: "../roles/dnsmasq"
   vars_files:
     - "../variables/common.yaml"
     - "../variables/pxe.yaml"
