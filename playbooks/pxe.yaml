@@ -5,9 +5,9 @@
   gather_facts: yes
   remote_user: "{{ ansible_remote_user }}"
   roles:
+    - role: "../roles/dnsmasq"
     - role: "../roles/nginx"
     - role: "../roles/pxe"
-    - role: "../roles/dnsmasq"
   vars_files:
     - "../variables/common.yaml"
     - "../variables/pxe.yaml"
