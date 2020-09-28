@@ -1,3 +1,4 @@
 hosts.ini
+scripts
 variables/common.yaml
 variables/pxe.yaml
